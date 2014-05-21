@@ -10,48 +10,51 @@
 
 @implementation Hand
 @synthesize cards;
--(bool)compareHand:(Hand *)otherHand
-{
-    if([self hasAPair]>0){
-        if([otherHand hasAPair]<=0){
-            //hand 1 wins with pair
-            return YES;
-        }else if([otherHand hasAPair]<[self hasAPair])
-        {
-            //other hand has a pair, but it is lower
-            return YES;
-        }
-    }
-    if([self isAFlush]>0 && [otherHand isAFlush]<=0){
-        //this has a flush
-        return YES;
-    }
-    if([self isAFlush]>=0 && [self isAFlush]>[otherHand isAFlush]){
-        return YES;
-    }
-    //high card
-    return [self highCard]>[otherHand highCard] ? YES : NO;
-}
+
 
 -(int)hasAPair
 {
-    if( ((Card*)cards[0]).rank ==  ((Card*)cards[1]).rank){
-        return  ((Card*)cards[0]).rank;
+    int highrank = 0;
+    //check each card for a pair
+    for(int i=0;i<cards.count-1;i++){
+        if([cards[i] rank] == [cards[i+1] rank]){
+            //if the rank is higher, store it
+            if([cards[i] rank]>highrank){
+                highrank = [cards[i] rank];
+                self.handValue = pair;
+            }
+        }
     }
-    
-    return 0;
+    return highrank;
 }
 -(int)isAFlush
 {
-    if( ((Card*)cards[0]).suit ==  ((Card*)cards[1]).suit){
-        return  [self highCard];
+    //no flushes of 1
+    if(cards.count > 1){
+        for(int i=0;i<cards.count-1;i++){
+            if([cards[i] cardSuit] != [cards[i+1] cardSuit]){
+                return 0;
+            }
+        }
+        //all match
+        if(self.handValue!=pair){
+            self.handValue = flush;
+        }
     }
-
-    return 0;
+    return [self highCard];
 }
+/*Should just store this in a property
+ */
 -(int)highCard
 {
-    return  ((Card*)cards[0]).rank >  ((Card*)cards[1]).rank ? ((Card*)cards[0]).rank : ((Card*)cards[1]).rank;
+    int localHighCard = 0;
+    for(int i=0;i<cards.count;i++){
+        if([cards[i] rank]>localHighCard){
+            localHighCard = [cards[i] rank];
+        }
+    }
+    return localHighCard;
+//    return  ((Card*)cards[0]).rank >  ((Card*)cards[1]).rank ? ((Card*)cards[0]).rank : ((Card*)cards[1]).rank;
 }
 -(void)addCard:(Card *)card
 {
@@ -59,5 +62,35 @@
         cards = [[NSMutableArray alloc]init];
     }
     [cards addObject:card];
+    //evaluate after each card
+    [self evaluateHand];
+}
+-(void)evaluateHand{
+    [self isAFlush];
+    [self hasAPair];
+}
+/*
+ *convenience to have string output of high hand
+ */
+-(NSString*)highValueString
+{
+    return [NSString stringWithFormat:@"%@ %i high", [self handValueToString],[self highCard] ];
+}
+/*
+ *convert the enum to a string
+ */
+-(NSString*)handValueToString
+{
+    switch ([self handValue]) {
+        case pair:
+            return @"Pair";
+            break;
+        case flush:
+            return @"Flush";
+            break;
+        case highcard:
+            return @"HighCard";
+            break;
+    }
 }
 @end

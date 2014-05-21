@@ -9,12 +9,12 @@
 #import "Card.h"
 
 @implementation Card
-@synthesize suit,rank;
+@synthesize cardSuit,rank;
 
 -(id)initWithCardIndex:(int)cardIndex{
     self = [super init];
     if(self){
-        suit = [self findSuite:cardIndex];
+        cardSuit = [self findSuite:cardIndex];
         rank = [self findRank:cardIndex];
     }
     return self;
@@ -47,7 +47,7 @@
  * Need a card utility class
  */
 -(NSString*)suitStringFromType{
-    switch(suit){
+    switch(cardSuit){
         case hearts:
             return @"Hearts";
             break;

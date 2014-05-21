@@ -9,14 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "Card.h"
 
+enum HandValue
+{
+    highcard,
+    flush,
+    pair
+};
 @interface Hand : NSObject
 @property NSMutableArray* cards;
+@property enum HandValue handValue;
 
--(bool)compareHand:(Hand*)otherHand;
-//nil if no pair, else the high pair
--(int)hasAPair;
-//returns nil if not a flush or the highestflush card
--(int)isAFlush;
+-(int)highCard;
+
 -(void)addCard:(Card*)card;
+-(NSString*)highValueString;
 @end
 

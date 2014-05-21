@@ -17,7 +17,7 @@ enum suit
 };
 @interface Card : NSObject
 -(id)initWithCardIndex:(int)cardIndex;
-@property enum suit suit;
+@property enum suit cardSuit;
 @property int rank;
 @property int cardIndex;
 -(NSString*)toString;

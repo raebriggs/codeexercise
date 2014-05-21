@@ -35,11 +35,13 @@
 - (IBAction)didTapShuffle:(id)sender {
     if(countInputTextField.text.length<=0){
         //show an error
+        outputLabel.text = @"";
     }else{
         NSString *count = countInputTextField.text;
         
         [self shuffleIt: [count intValue] ];
     }
+    [self.view endEditing:YES];
 }
 /**
  *Use the Knuth-Fisher-Yates algorithm
@@ -105,17 +107,35 @@
     [hand2 addCard:[ [Card alloc]initWithCardIndex:[cards[1] intValue] ] ];
     [hand2 addCard:[ [Card alloc]initWithCardIndex:[cards[3] intValue] ] ];
     
-    if([hand1 compareHand:hand2])
-    {
-        winnerLabel.text = @"Hand1";
-    }else{
-        winnerLabel.text = @"Hand2";
-    }
-     hand1Card1.text =  [hand1.cards[0] toString];
+    NSArray *hands = @[hand1,hand2];
+    Hand *winningHand = [self compareHands:hands];
+    
+    
+    winnerLabel.text = [winningHand highValueString];
+    hand1Card1.text =  [hand1.cards[0] toString];
     hand1Card2.text =  [hand1.cards[1] toString];
     hand2Card1.text =  [hand2.cards[0] toString];
     hand2Card2.text = [hand2.cards[1] toString];
     
 }
+-(Hand*)compareHands:(NSArray*)hands
+{
+    Hand *currentWinner = hands [0];
+    
+    for(int i=1;i<=hands.count-1;i++){
+        if([currentWinner handValue] < [hands[i] handValue]){
+            //current winner is worse than ths hand
+            currentWinner = hands[i];
+        }else if([currentWinner handValue]==[hands[i] handValue]){
+            if([currentWinner highCard] < [hands[i] highCard]){
+                currentWinner = hands[i];
+            }else{
+                //its a tie
+            }
+        }
+    }
+    return currentWinner;
+}
+
 @end
 
