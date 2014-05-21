@@ -13,5 +13,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *shuffleButton;
 @property (weak, nonatomic) IBOutlet UITextField *countInputTextField;
 - (IBAction)didTapShuffle:(id)sender;
+- (IBAction)didTapDraw:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *winnerLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *hand1Card1;
+
+@property (weak, nonatomic) IBOutlet UILabel *hand1Card2;
+@property (weak, nonatomic) IBOutlet UILabel *hand2Card1;
+@property (weak, nonatomic) IBOutlet UILabel *hand2Card2;
 
 @end

@@ -22,6 +22,8 @@
 		010592DC192C760700ABD8BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010592BB192C760700ABD8BB /* UIKit.framework */; };
 		010592E4192C760700ABD8BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 010592E2192C760700ABD8BB /* InfoPlist.strings */; };
 		010592E6192C760700ABD8BB /* CodeExerciseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 010592E5192C760700ABD8BB /* CodeExerciseTests.m */; };
+		010592F1192C828D00ABD8BB /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 010592F0192C828D00ABD8BB /* Card.m */; };
+		010592F4192C928700ABD8BB /* Hand.m in Sources */ = {isa = PBXBuildFile; fileRef = 010592F3192C928700ABD8BB /* Hand.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,10 @@
 		010592E1192C760700ABD8BB /* CodeExerciseTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CodeExerciseTests-Info.plist"; sourceTree = "<group>"; };
 		010592E3192C760700ABD8BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		010592E5192C760700ABD8BB /* CodeExerciseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CodeExerciseTests.m; sourceTree = "<group>"; };
+		010592EF192C828D00ABD8BB /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		010592F0192C828D00ABD8BB /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		010592F2192C928700ABD8BB /* Hand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hand.h; sourceTree = "<group>"; };
+		010592F3192C928700ABD8BB /* Hand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hand.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,10 @@
 				010592D0192C760700ABD8BB /* CodeExerciseViewController.m */,
 				010592D2192C760700ABD8BB /* Images.xcassets */,
 				010592BE192C760700ABD8BB /* Supporting Files */,
+				010592EF192C828D00ABD8BB /* Card.h */,
+				010592F0192C828D00ABD8BB /* Card.m */,
+				010592F2192C928700ABD8BB /* Hand.h */,
+				010592F3192C928700ABD8BB /* Hand.m */,
 			);
 			path = CodeExercise;
 			sourceTree = "<group>";
@@ -254,9 +264,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				010592F4192C928700ABD8BB /* Hand.m in Sources */,
 				010592D1192C760700ABD8BB /* CodeExerciseViewController.m in Sources */,
 				010592C4192C760700ABD8BB /* main.m in Sources */,
 				010592C8192C760700ABD8BB /* CodeExerciseAppDelegate.m in Sources */,
+				010592F1192C828D00ABD8BB /* Card.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
